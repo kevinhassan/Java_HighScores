@@ -22,7 +22,8 @@ public class TestHighScore1 {
 		HighScore1 hg = new HighScore1("109182");
 		
 		//Récupération des 10 meilleurs scores du serveur ThingSpeak
-		ArrayList<String[]> highscoresList = hg.getAllScore();
+		ArrayList<String[]> highscoresList = hg.getScore();
+		ArrayList<String[]> highsc = hg.getScore();
 		
 		//Affichage du tableau des 10 meilleurs scores 
 		System.out.println("Tableau des meilleurs scores");
@@ -48,7 +49,7 @@ public class TestHighScore1 {
 		
 		try {
 			//Ouverture du fihcier csv contenant les scores
-			BufferedReader br = new BufferedReader(new FileReader("/Users/bastienricoeur/Desktop/ProjectFinalJava/scoreFile.csv"));
+			BufferedReader br = new BufferedReader(new FileReader("/Users/bastienricoeur/Desktop/ProjectFinalJava/scoreFileMoodle.csv"));
 			String ligne = br.readLine();
 			//Parcours de toutes les lignes du fichier
 			while(ligne!=null){
@@ -77,7 +78,7 @@ public class TestHighScore1 {
 		playerScore=scoreArrayCsv.get(index);
 		
 		//Affichage du nom et du score random du joueur
-		System.out.println("Féliciation "+playerName+", vous avez réalisé un score de "+playerScore);
+		System.out.println("Félicitation "+playerName+", vous avez réalisé un score de "+playerScore);
 		
 	}
 }

@@ -7,7 +7,13 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.ListIterator;
 
+/**
+ * This is the class HighScore which allows to retrieve scores on ThingSpeak server
+ * @version 1.0
+ * @author Ricoeur-Hassan 
+ */
 public class HighScore1 {
 
 	String channelID;
@@ -15,10 +21,18 @@ public class HighScore1 {
 	String serverAdressRequest="/feeds.csv";
 	String splitSeparator=",";
 	
+	/**
+	 * Constructor of a HighScore class object
+	 * @param ID, a string which is the ID of your ThingSpeak channel
+	 */
 	HighScore1(String ID) {
 		this.channelID = ID;
 	}
 	
+	/**
+	 * Function which allows to download all scores from a ThingSpeak server
+	 * @return a ArrayList of String[], which are couples of scores and players
+	 */
 	ArrayList<String[]> getAllScore()
 	{
 		//Construction de l'adresse complète du serveur pour récupérer feeds.csv
@@ -66,6 +80,47 @@ public class HighScore1 {
 		}
 		
 		return listScore;
+		
+	}
+	
+	/**
+	 * Method which with the getAllscore method retrieves the scores and players, and sorts this scores in desc order and keeps just the 10 best scores
+	 * @return a ArrayList of String[], which are the 10 best couples of scores and players
+	 */
+	ArrayList<String[]> getScore()
+	{
+		ArrayList<String[]> scoreUnranked = this.getAllScore();
+		ArrayList<String[]> scoreRanked = new ArrayList<String[]>();
+		int compt=0;
+		
+		//Tant qu'il reste des couples dans la liste des scoreUnranked et qu'on a pas les 10 meilleurs
+		while(scoreUnranked.size()>0 && compt<10)
+		{
+			ListIterator itr = scoreUnranked.listIterator();
+			int max= -1;
+			String[] cplMax = new String[2];
+			
+			//On récupère le couple score,player avec le score le plus grand
+			while (itr.hasNext()){
+				String[] result =(String[]) itr.next();
+				try{
+					int value = Integer.parseInt(result[0]);
+					if(value>max){
+						max=value;
+						cplMax=result;
+					}
+			    }
+			    catch(NumberFormatException e){
+			        System.out.println("Problème sruvenue lors de la conversion de string en int."+e.getMessage());
+			    }
+			}
+			
+			//On ajoute ce couple à la liste des scoreRanked et on le supprime des Unranked
+			scoreRanked.add(cplMax);
+			scoreUnranked.remove(cplMax);
+			compt++;
+		}
+		return scoreRanked;
 		
 	}
 }
