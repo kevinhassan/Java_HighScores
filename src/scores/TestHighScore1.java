@@ -16,8 +16,16 @@ import java.util.Scanner;
  * This is the class TestHighScore which allows to select a fake score from a file for a new player
  * @version 1.0
  * @author Ricoeur-Hassan 
+ * @since 2016-05-03 
  */
 public class TestHighScore1 {
+	/**
+	 * @param arg
+	 * @exception InputMismatchException if name's type input is incorrect 
+	 * @exception NumberFormatException if conversion string to int failed
+	 * @exception FileNotFoundException if problem occurred during opening
+	 * @exception IOException if problem if problem occurred during reading
+	 */
 	public static void main (String [] arg){
 		ArrayList<Integer> scoreArray= new ArrayList<Integer>();
 		String playerName="";
@@ -68,7 +76,7 @@ public class TestHighScore1 {
 			    	  scoreArray.add(Integer.parseInt(data[0]));
 			      }
 			      catch(NumberFormatException e){
-			        System.out.println("Problème sruvenue lors de la conversion de string en int."+e.getMessage());
+			        System.out.println("Problème survenu lors de la conversion de string en int."+e.getMessage());
 			      }
 			      ligne=br.readLine();
 			}

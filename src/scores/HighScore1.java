@@ -13,9 +13,10 @@ import java.util.ListIterator;
  * This is the class HighScore which allows to retrieve scores on ThingSpeak server
  * @version 1.0
  * @author Ricoeur-Hassan 
+ * @since 2016-05-03
  */
 public class HighScore1 {
-
+	
 	String channelID;
 	String serverAdressBegin="https://api.thingspeak.com/channels/";
 	String serverAdressRequest="/feeds.csv";
@@ -23,17 +24,21 @@ public class HighScore1 {
 	
 	/**
 	 * Constructor of a HighScore class object
-	 * @param ID, a string which is the ID of your ThingSpeak channel
+	 * 
+	 * @param ID a string which is the ID of your ThingSpeak channel
 	 */
-	HighScore1(String ID) {
+	public HighScore1(String ID) {
 		this.channelID = ID;
 	}
 	
 	/**
 	 * Function which allows to download all scores from a ThingSpeak server
-	 * @return a ArrayList of String[], which are couples of scores and players
+	 * 
+	 * @exception IOException if file not present on server
+	 * @exception MalformedURLException if connection impossible with server
+	 * @return ArrayList<String[]> which are couples of scores and players
 	 */
-	ArrayList<String[]> getAllScore()
+	public ArrayList<String[]> getAllScore()
 	{
 		//Construction de l'adresse complète du serveur pour récupérer feeds.csv
 		String serverAdress=this.serverAdressBegin+this.channelID+this.serverAdressRequest;
@@ -57,7 +62,7 @@ public class HighScore1 {
 				while (ligne!=null){
 					String[] data = ligne.split(this.splitSeparator);
 					
-					//On enlève la première ligne car c'est l'entête et on vérifie que la ligne comporte tous les champs pour enlever les lignes vides
+					//On enleve la première ligne car c'est l'entête et on vérifie que la ligne comporte tous les champs pour enlever les lignes vides
 					if(compt>0 && data.length==4)
 					{
 						String[] insertTab = new String[2];
@@ -84,10 +89,12 @@ public class HighScore1 {
 	}
 	
 	/**
-	 * Method which with the getAllscore method retrieves the scores and players, and sorts this scores in desc order and keeps just the 10 best scores
-	 * @return a ArrayList of String[], which are the 10 best couples of scores and players
+	 * Method which with the getAllscore method retrieves the scores and players, 
+	 * and sorts this scores in descendant order and keeps just the 10 best scores
+	 * @exception NumberFormatException if conversion string to int failed
+	 * @return ArrayList<String[]> Store 10 best couples of scores and players
 	 */
-	ArrayList<String[]> getScore()
+	public ArrayList<String[]> getScore()
 	{
 		ArrayList<String[]> scoreUnranked = this.getAllScore();
 		ArrayList<String[]> scoreRanked = new ArrayList<String[]>();
@@ -111,7 +118,7 @@ public class HighScore1 {
 					}
 			    }
 			    catch(NumberFormatException e){
-			        System.out.println("Problème sruvenue lors de la conversion de string en int."+e.getMessage());
+			        System.out.println("Problème survenue lors de la conversion de string en int."+e.getMessage());
 			    }
 			}
 			
