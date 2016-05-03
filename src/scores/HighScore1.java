@@ -35,13 +35,13 @@ public class HighScore1 {
 	 */
 	ArrayList<String[]> getAllScore()
 	{
-		//Construction de l'adresse complÃ¨te du serveur pour rÃ©cupÃ©rer feeds.csv
+		//Construction de l'adresse complète du serveur pour récupérer feeds.csv
 		String serverAdress=this.serverAdressBegin+this.channelID+this.serverAdressRequest;
 		
 		ArrayList<String[]> listScore = new ArrayList<String[]>();
 		URL myAdress = null;
 		try {
-			//CrÃ©ation d'un objet URL avec l'adresse du serveur ThingSpeak
+			//Création d'un objet URL avec l'adresse du serveur ThingSpeak
 			myAdress = new URL(serverAdress);
 			try {
 				//Ouverture d'une connexion vers le serveur
@@ -53,11 +53,11 @@ public class HighScore1 {
 				ligne=br.readLine();
 				int compt=0;
 				
-				//Parcours du fichier prÃ©sent sur le serveur et rÃ©cupÃ©ration des scores
+				//Parcours du fichier présent sur le serveur et récupération des scores
 				while (ligne!=null){
 					String[] data = ligne.split(this.splitSeparator);
 					
-					//On enlÃ¨ve la premiÃ¨re ligne car c'est l'entÃªte et on vÃ©rifie que la ligne comporte tous les champs pour enlever les lignes vides
+					//On enlève la première ligne car c'est l'entête et on vérifie que la ligne comporte tous les champs pour enlever les lignes vides
 					if(compt>0 && data.length==4)
 					{
 						String[] insertTab = new String[2];
@@ -73,10 +73,10 @@ public class HighScore1 {
 				
 				
 			} catch (IOException e) {
-				System.out.println("Impossible de lire le fichier prÃ©sent sur le serveur");
+				System.out.println("Impossible de lire le fichier présent sur le serveur");
 			}
 		}catch(MalformedURLException me){
-		      System.out.println("Impossible d'accÃ¨s aux fichiers sur le serveur");
+		      System.out.println("Impossible d'accès aux fichiers sur le serveur");
 		}
 		
 		return listScore;
@@ -100,7 +100,7 @@ public class HighScore1 {
 			int max= -1;
 			String[] cplMax = new String[2];
 			
-			//On rÃ©cupÃ¨re le couple score,player avec le score le plus grand
+			//On récupère le couple score,player avec le score le plus grand
 			while (itr.hasNext()){
 				String[] result =(String[]) itr.next();
 				try{
@@ -111,11 +111,11 @@ public class HighScore1 {
 					}
 			    }
 			    catch(NumberFormatException e){
-			        System.out.println("ProblÃ¨me sruvenue lors de la conversion de string en int."+e.getMessage());
+			        System.out.println("Problème sruvenue lors de la conversion de string en int."+e.getMessage());
 			    }
 			}
 			
-			//On ajoute ce couple Ã  la liste des scoreRanked et on le supprime des Unranked
+			//On ajoute ce couple à la liste des scoreRanked et on le supprime des Unranked
 			scoreRanked.add(cplMax);
 			scoreUnranked.remove(cplMax);
 			compt++;
