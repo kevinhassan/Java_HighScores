@@ -37,7 +37,7 @@ public class TestHighScore3 {
 		HighScore3 hg = new HighScore3("109183");
 		
 		//Récupération des 10 meilleurs scores du serveur ThingSpeak
-		ArrayList<String[]> scoresList = hg.getScore();//Faire gaffe car on récupère que 4 scores
+		ArrayList<String[]> scoresList = hg.getScore();
 		ArrayList<BestPlayer3> highscoresList = hg.tenBestScores(scoresList);
 		
 		//Affichage du tableau des 10 meilleurs scores 
@@ -99,9 +99,9 @@ public class TestHighScore3 {
 		boolean inTheTen = false;//True if player's score is in 10 best scores
 
 		//On parcourt tous les scores et si 1 seul est inférieur à celui de notre joueur => c'est gagné !
-		while (inTheTen && itr.hasNext())
+		while (inTheTen && itr.hasNext()){
 			BestPlayer3 bp = (BestPlayer3) itr.next();
-			if (playerScore > bp.getScore())
+			if (playerScore.compareTo(bp) == 1)
 			{
 				System.out.println("Vous fêtes parti des 10 meilleurs !");
 				hg.sendScore(new BestPlayer3(playerName,playerScore));//On le save sur thingSpeak
