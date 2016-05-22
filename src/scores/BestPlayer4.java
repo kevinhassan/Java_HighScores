@@ -1,6 +1,6 @@
 package scores;
 
-public class BsetPlayer4 {
+public class BestPlayer4 {
 
 	String player;
 	int score;
@@ -11,7 +11,7 @@ public class BsetPlayer4 {
 	 * @param p a string which is the name of the player
 	 * @param s a int which the score of the player
 	 */
-	public BsetPlayer4(String p,int s)
+	public BestPlayer4(String p,int s)
 	{
 		this.player=p;
 		this.score=s;
@@ -58,7 +58,7 @@ public class BsetPlayer4 {
 	 * @param p a player to compare with the player this
 	 * @return 0 if the both score of the players is equals, -1 if it's the player in param who has the best score and 1 otherwise
 	 */
-	public int compareTo(BsetPlayer4 p)
+	public int compareTo(BestPlayer4 p)
 	{
 		int scoreTest=p.getScore();
 		int result;

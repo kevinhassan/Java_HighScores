@@ -120,7 +120,7 @@ public class TestHighScore4 {
 				finish = true;
 			}
 			else{
-				System.out.println('Error, please write y or n !')
+				System.out.println("Error, please write y or n !");
 			}
 		}				
 	}
