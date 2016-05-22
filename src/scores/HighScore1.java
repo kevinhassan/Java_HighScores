@@ -61,7 +61,6 @@ public class HighScore1 {
 				//Parcours du fichier présent sur le serveur et récupération des scores
 				while (ligne!=null){
 					String[] data = ligne.split(this.splitSeparator);
-					
 					//On enleve la première ligne car c'est l'entête et on vérifie que la ligne comporte tous les champs pour enlever les lignes vides
 					if(compt>0 && data.length==4)
 					{

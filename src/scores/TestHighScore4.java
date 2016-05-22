@@ -55,8 +55,8 @@ public class TestHighScore4 {
 			}
 			// Ask Player for launching a new game
 			System.out.print("Do you want to start a new game ? (y or n) ");
-			String response = stdin.nextLine();
-			if(response == 'y'){
+			String response = sc.nextLine();
+			if(response == "y"){
 				//Demande à l'utilisateur de rentrer un nom
 				try{
 					System.out.println("Veuillez rentrer un nom de joueur :");
@@ -104,24 +104,26 @@ public class TestHighScore4 {
 				boolean inTheTen = false;//True if player's score is in 10 best scores
 
 				//On parcourt tous les scores et si 1 seul est inférieur à celui de notre joueur => c'est gagné !
+				BestPlayer4 player = new BestPlayer4(playerName,playerScore);
 				while (inTheTen && itr.hasNext()){
 					BestPlayer4 bp = (BestPlayer4) itr.next();
-					if (playerScore.compareTo(bp) == 1)
+					if (player.compareTo(bp) == 1)
 					{
 						System.out.println("Vous fêtes parti des 10 meilleurs !");
-						hg.sendScore(new BestPlayer4(playerName,playerScore));//On le save sur thingSpeak
+						hg.sendScore(player);//On le save sur thingSpeak
 						inTheTen = true;
 					}
 				}
 				//Affichage du nom et du score random du joueur
 				System.out.println("Félicitation "+playerName+", vous avez réalisé un score de "+playerScore);
 			}
-			else if(response == 'n'){
+			else if(response == "n"){
 				finish = true;
 			}
 			else{
 				System.out.println("Error, please write y or n !");
 			}
+			sc.close();
 		}				
 	}
 }

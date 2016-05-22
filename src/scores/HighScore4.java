@@ -94,9 +94,9 @@ public class HighScore4 {
 	 * @exception NumberFormatException if conversion string to int failed
 	 * @return ArrayList<String[]> Store 10 best couples of scores and players
 	 */
-	public ArrayList<BestPlayer3> tenBestScores(ArrayList<String[]> readScores)
+	public ArrayList<BestPlayer4> tenBestScores(ArrayList<String[]> readScores)
 	{
-		ArrayList<BestPlayer3> scoreRanked = new ArrayList<BestPlayer3>();
+		ArrayList<BestPlayer4> scoreRanked = new ArrayList<BestPlayer4>();
 		int compt=0;
 		
 		//Tant qu'il reste des couples dans la liste des readScores et qu'on a pas les 10 meilleurs
@@ -105,13 +105,13 @@ public class HighScore4 {
 			ListIterator itr = readScores.listIterator();
 			String[] result =(String[]) itr.next();
 			String[] cplMax = result;
-			BestPlayer3 bp = new BestPlayer3(result[1],Integer.parseInt(result[0]));//Couple (score,nom)
+			BestPlayer4 bp = new BestPlayer4(result[1],Integer.parseInt(result[0]));//Couple (score,nom)
 			
 			//On récupère le couple score,player avec le score le plus grand
 			while (itr.hasNext()){
 				try{
 					result =(String[]) itr.next();
-					BestPlayer3 p = new BestPlayer3(result[1],Integer.parseInt(result[0]));//On crée un joueur sur le couple suivant et on compare au joueur précédent
+					BestPlayer4 p = new BestPlayer4(result[1],Integer.parseInt(result[0]));//On crée un joueur sur le couple suivant et on compare au joueur précédent
 					if(p.compareTo(bp)==1)//Si =1 => p est meilleur que bp
 					{
 						bp=p;
@@ -136,7 +136,7 @@ public class HighScore4 {
 	 * Method which send a score to thingSpeak servers to save score of a player, 
 	 * @exception MalformedURLException if connection impossible with server
 	 */
-	public void sendScore (BestPlayer3 p){
+	public void sendScore (BestPlayer4 p){
 		String name = p.getPlayer();
 		int score = p.getScore();
 
