@@ -34,14 +34,14 @@ public class TestHighScore4 {
 		Scanner sc = new Scanner(System.in);
 		
 		//Création d'un nouvel objet HighScore
-		HighScore3 hg = new HighScore3("109183");
+		HighScore4 hg = new HighScore4("109183");
 		
 		boolean finish = false;
 
 		while(!finish){
 			//Récupération des 10 meilleurs scores du serveur ThingSpeak
 			ArrayList<String[]> scoresList = hg.getScore();
-			ArrayList<BestPlayer3> highscoresList = hg.tenBestScores(scoresList);
+			ArrayList<BestPlayer4> highscoresList = hg.tenBestScores(scoresList);
 			//Affichage du tableau des 10 meilleurs scores 
 			System.out.println("Tableau des meilleurs scores");
 			System.out.println("----------------------------");
@@ -50,7 +50,7 @@ public class TestHighScore4 {
 			ListIterator itr = highscoresList.listIterator();
 			while (itr.hasNext())
 			{
-				BestPlayer3 result = (BestPlayer3) itr.next();
+				BestPlayer4 result = (BestPlayer4) itr.next();
 				System.out.println(result.getPlayer()+" | "+result.getScore());
 			}
 			// Ask Player for launching a new game
@@ -105,11 +105,11 @@ public class TestHighScore4 {
 
 				//On parcourt tous les scores et si 1 seul est inférieur à celui de notre joueur => c'est gagné !
 				while (inTheTen && itr.hasNext()){
-					BestPlayer3 bp = (BestPlayer3) itr.next();
+					BestPlayer4 bp = (BestPlayer4) itr.next();
 					if (playerScore.compareTo(bp) == 1)
 					{
 						System.out.println("Vous fêtes parti des 10 meilleurs !");
-						hg.sendScore(new BestPlayer3(playerName,playerScore));//On le save sur thingSpeak
+						hg.sendScore(new BestPlayer4(playerName,playerScore));//On le save sur thingSpeak
 						inTheTen = true;
 					}
 				}
