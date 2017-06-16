@@ -1,4 +1,4 @@
-# JavaFinalProject
+# Java_HighScores
 Display high scores of a game
 
-[Documentation](http://kevinhassanig.github.io/JavaFinalProject/)
+[Documentation](http://kevinhassan.github.io/Java_HighScores/)
